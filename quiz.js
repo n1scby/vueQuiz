@@ -1,6 +1,6 @@
 "use strict";
 
-var quizTitle = 'Quiz 1'
+var quizTitle = 'Quiz 1';
 
 var questions = [
     {
@@ -51,6 +51,7 @@ var questions = [
     ]
 
 Vue.component('quiz', {
+    props:['title'],
     template: '<div><h1>{{title}}</h1></div>'
 })
 
