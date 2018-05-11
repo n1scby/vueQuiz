@@ -1,6 +1,7 @@
 "use strict";
 
 var quizTitle = 'Quiz 1';
+var questionNumber = 0;
 
 var questions = [
     {
@@ -59,5 +60,34 @@ new Vue({
     el:'#quiz',
     data: {
         title: quizTitle
+    }
+});
+
+
+
+Vue.component('question', {
+    props:['question'],
+    template: '<div>Question: <p>{{question}}</p></div>'
+})
+
+
+new Vue({
+    el:'#question',
+    data: {
+        question: questions[questionNumber].question
+    }
+});
+
+Vue.component('answers', {
+    props:['answerList', 'nextAnswer'],
+    template: '<ul><li v-for="answer in answerList" v-bind:answersList="answersData" :nextAnswer="answer.answer" v-bind:key="answer.id">{{ nextAnswer }}</li></ul>'
+    
+    })
+
+
+new Vue({
+    el:'#answers',
+    data: {
+        answersData: questions[questionNumber].answers
     }
 });

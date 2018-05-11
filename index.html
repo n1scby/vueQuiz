@@ -10,6 +10,15 @@
     <div id="quiz">
         <quiz v-bind:title="title"></quiz>
     </div>
+        <div id="question">
+            <question v-bind:question="question"></question>
+        </div>
+        <div id="answers">
+            <answers></answers>
+      <!--    <div>Answers: <ul><li v-for="answer in answers">{{ answer.answer }}</li></ul></div> -->
+     <!--  <div>Answers: <ul><li v-for="answer in answers"  v-text="answer.answer"></li></ul></div> -->
+        </div>
+    
 
        <!-- development version, includes helpful console warnings -->
        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
