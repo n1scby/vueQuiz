@@ -79,10 +79,15 @@ new Vue({
 });
 
 Vue.component('answers', {
-    props:['answerList', 'nextAnswer'],
-    template: '<ul><li v-for="answer in answerList" v-bind:answersList="answersData" :nextAnswer="answer.answer" v-bind:key="answer.id">{{ nextAnswer }}</li></ul>'
+    props:['answer-list', 'next-answer'],
+   //  template: '<ul><li v-for="answer in answersData" v-bind:key="answer.Id" v-bind:answer-list="answersData" v-bind:next-answer="answer.answer"</li></ul>'
+    template: '<li>{{ nextAnswer }}</li>'
     
     })
+
+// Vue.component('answers'), {
+//     template: '<ul id="answer"><answer v-for="answer in answersData" v-bind:key="answer.Id" v-bind:answer-list="answersData" v-bind:next-answer="answer.answer"></answer></ul>'
+// }
 
 
 new Vue({
@@ -91,3 +96,5 @@ new Vue({
         answersData: questions[questionNumber].answers
     }
 });
+
+

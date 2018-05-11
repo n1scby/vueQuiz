@@ -13,8 +13,11 @@
         <div id="question">
             <question v-bind:question="question"></question>
         </div>
-        <div id="answers">
-            <answers></answers>
+        <div id="answersX">
+
+           <ul id="answers"> 
+           <answers v-for="answer in answersData" v-bind:key="answer.Id" v-bind:answer-list="answersData" v-bind:next-answer="answer.answer"></answers>
+           </ul>
       <!--    <div>Answers: <ul><li v-for="answer in answers">{{ answer.answer }}</li></ul></div> -->
      <!--  <div>Answers: <ul><li v-for="answer in answers"  v-text="answer.answer"></li></ul></div> -->
         </div>
