@@ -98,3 +98,64 @@ new Vue({
 });
 
 
+
+Vue.component('answers1', {
+    template: `
+            <div>Answers: 
+                <ul>
+                    <li v-for="answer in answerData">{{ answer.answer }}</li>
+                </ul>
+            </div>
+
+           
+        `,
+       
+
+    data() {
+        return {
+            answerData: questions[questionNumber].answers
+        };
+    }
+})
+
+// new Vue({
+//     el: '#answers1'
+// });
+
+
+
+
+Vue.component('new-question', {
+    template: `
+            <div>
+            <h2>Question: {{question.question}}</h2>
+            <answers1></answers1>
+            <button type="button" v-on:click="nextQuestion()">Next Question</button>
+            </div>
+        `,
+   
+    methods: {
+        nextQuestion(){
+            questionNumber++;
+        }
+
+    },
+    data() {
+        return{
+            question: questions[questionNumber].question
+        }
+    }
+    
+})
+
+
+new Vue({
+    el: '#new-question'
+});
+
+
+
+
+
+
+
