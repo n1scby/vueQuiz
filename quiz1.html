@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Quiz App 1</title>
+</head>
+
+
+<body>
+
+    <div id="quiz">
+
+        <h2>Quiz 1</h2>
+        <div>
+            <question v-bind:question="question"></question>
+            <div>
+                <ul>
+                <answer v-for="answer in answers" v-bind:key="answer.Id" v-bind:next="answer.answer"></answer>
+                </ul>
+            </div>
+        </div>
+        <button v-on:click="nextQuestion()">next Question</button>
+
+    </div>
+
+
+ <!-- development version, includes helpful console warnings -->
+ <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+ <script src="quiz1.js"></script>
+
+</body>
+
+</html> 
+
+

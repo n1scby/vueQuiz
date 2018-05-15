@@ -49,7 +49,7 @@ var questions = [
          answerId: 2
 
      }
-    ]
+    ];
 
 Vue.component('quiz', {
     props:['title'],
@@ -128,7 +128,7 @@ Vue.component('answers1', {
 Vue.component('new-question', {
     template: `
             <div>
-            <h2>Question: {{question.question}}</h2>
+            <h2>Question: {{question}}</h2>
             <answers1></answers1>
             <button type="button" v-on:click="nextQuestion()">Next Question</button>
             </div>
@@ -144,13 +144,17 @@ Vue.component('new-question', {
         return{
             question: questions[questionNumber].question
         }
+    
     }
     
 })
 
 
 new Vue({
-    el: '#new-question'
+    el: '#new-question',
+    data: {
+        question: questions[questionNumber]
+    }
 });
 
 
