@@ -62,9 +62,9 @@ var questions = [
                         <question v-bind:thisquestion="question"> </question>
                     </div>
                     <div>
-                    <ul>
-                    <answer v-for="answer in answers" v-bind:key="answer.Id" v-bind:next="answer.answer" v-bind:answerid="answer.Id"></answer>
-                    </ul>
+                   
+                    <answer v-for="answer in answers" v-bind:key="answer.id" v-bind:next="answer.answer" v-bind:answerid="answer.id"></answer>
+                    
                 </div>
                     <button v-on:click="nextQuestion()">next Question</button>
                 </div>
@@ -103,15 +103,15 @@ var questions = [
     Vue.component('answer',{
         props: ['next', 'answerid'],
         template: `
-                    <div>
-                        <input type="radio"  v-model="next" value="next" id="answerid">
+                   <div>
+                        <input type="radio"  v-model="selectedanswer" :value=answerid :id="'answer' + answerid" name='questionAnswer'>
                         <label for="answerid">{{next}}</label>
-                    </div>
+                  </div>
         
         `,
         data() {
             return{
-                answers: []
+                selectedanswer: ''
             }
         }
 
