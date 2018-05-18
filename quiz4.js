@@ -63,17 +63,25 @@ var questions = [
                     </div>
                     <div>
                    
-                    <answer v-for="answer in answers" v-bind:key="answer.id" v-bind:next="answer.answer" v-bind:answerid="answer.id"></answer>
+                    <answer v-for="answer in answers" v-bind:key="answer.id" v-bind:next="answer.answer" v-bind:answerid="answer.id" v-bind:check="checked" v-on:select-answer="onSelectAnswer"></answer>
                     
                 </div>
+                    <div>
+                    <button v-on:click="checkAnswer()">Submit Answer</button>
+                    </div>
                     <button v-on:click="nextQuestion()">next Question</button>
+                    <div> <h3>{{answerMessage}} </h3></div>
                 </div>
                 `,
                 data() {
                     return{
-                        title: "Quiz 3",
+                        title: "Quiz 4",
                         question: questions[questionNumber].question,
-                        answers: questions[questionNumber].answers   
+                        answers: questions[questionNumber].answers,
+                        correctAnswer: questions[questionNumber].answerId,
+                        answerMessage: "",
+                        selectedAnswer: 0 ,
+                        checked: false 
                     }
                 },
                 methods:  {
@@ -82,8 +90,22 @@ var questions = [
                         questionNumber++;
                         this.question = questions[questionNumber].question;
                         this.answers = questions[questionNumber].answers;
+                        this.correctAnswer = questions[questionNumber].answerId;
+                        this.checked = false;
                         }
+                    },
+                    checkAnswer(){
+                        if (this.selectedAnswer == this.correctAnswer){
+                            this.answerMessage = "Correct!";
+                        } 
+                        else{
+                            this.answerMessage = "Wrong!";
+                        }
+                    },
+                    onSelectAnswer: function(selected){
+                        this.selectedAnswer = selected;
                     }
+                   
                 }
     })
 
@@ -101,17 +123,17 @@ var questions = [
 
 
     Vue.component('answer',{
-        props: ['next', 'answerid'],
+        props: ['next', 'answerid', 'check'],
         template: `
                    <div>
-                        <input type="radio"  v-model="selectedanswer" :value=answerid :id="'answer' + answerid" name='questionAnswer'>
-                        <label for="answerid">{{next}}</label>
+                        <input type="radio" :checked=check  :value=answerid :id="'answer' + answerid" name='questionAnswer' v-on:click="$emit('select-answer', answerid)">
+                        <label :for="'answer' + answerid">{{next}}</label>
                   </div>
         
         `,
         data() {
             return{
-                selectedanswer: ''
+                selectedAnswer: ''
             }
         }
 
