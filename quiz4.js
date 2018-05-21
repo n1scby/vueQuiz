@@ -62,6 +62,7 @@ var questions = [
                     <div>
                        <h3> Question: {{number}} </h3> 
                        <h3> # Correct: {{correct}} </h3>
+                    </div>   
                     <div>
                         <question v-bind:thisquestion="question"> </question>
                     </div>
@@ -69,7 +70,7 @@ var questions = [
                    
                     <answer v-for="answer in answers" v-bind:key="answer.id" v-bind:next="answer.answer" v-bind:answerid="answer.id" v-bind:check="checked" v-on:select-answer="onSelectAnswer"></answer>
                     
-                </div>
+                    </div>
                     <div>
                     <button v-on:click="checkAnswer()">Submit Answer</button>
                     </div>
