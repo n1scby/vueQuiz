@@ -3,6 +3,7 @@
 var quizTitle = 'Quiz 1';
 var questionNumber = 0;
 
+
 var questions = [
     {
     questionId: 1,
@@ -59,6 +60,9 @@ var questions = [
                 <div>
                     <h2>{{ title }}</h2>
                     <div>
+                       <h3> Question: {{number}} </h3> 
+                       <h3> # Correct: {{correct}} </h3>
+                    <div>
                         <question v-bind:thisquestion="question"> </question>
                     </div>
                     <div>
@@ -81,7 +85,10 @@ var questions = [
                         correctAnswer: questions[questionNumber].answerId,
                         answerMessage: "",
                         selectedAnswer: 0 ,
-                        checked: false 
+                        checked: false,
+                        number: 1,
+                        correct: 0,
+                        answered: false 
                     }
                 },
                 methods:  {
@@ -92,11 +99,17 @@ var questions = [
                         this.answers = questions[questionNumber].answers;
                         this.correctAnswer = questions[questionNumber].answerId;
                         this.checked = false;
+                        this.number++;
+                        this.answered = false;
                         }
                     },
                     checkAnswer(){
                         if (this.selectedAnswer == this.correctAnswer){
                             this.answerMessage = "Correct!";
+                            if (!this.answered) {
+                                this.correct++;
+                                this.answered = true;
+                            }
                         } 
                         else{
                             this.answerMessage = "Wrong!";
